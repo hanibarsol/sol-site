@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="פלטפורמה דיגיטלית ללימוד מוסיקה לילדים בגילאי 4-8. משחקים, שירים, דמויות ונגינה - הדרך שבה ילדים אוהבים ללמוד מוסיקה.">
+<link rel="icon" href="assets/logo.png">
+
+<!-- כך הקישור נראה כששולחים אותו בוואטסאפ או מפרסמים אותו -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="המשפחה של סול">
+<meta property="og:title" content="המשפחה של סול">
+<meta property="og:description" content="הדרך שבה ילדים אוהבים ללמוד מוסיקה. לגילאי 4-8.">
+<meta property="og:image" content="https://solsfamily.com/assets/family.jpg">
+<meta property="og:url" content="https://solsfamily.com/">
+<meta name="twitter:card" content="summary_large_image">
+<title>המשפחה של סול</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;600;700&family=Heebo:wght@400;700;900&display=swap">
+</head>
+<body>
+<style>
+/* ============================================================
+   המשפחה של סול — דף נחיתה
+
+   הרעיון: הסולם עצמו הוא עמוד השדרה של הדף. כל פרק נושא את
+   הצליל הבא בסולם ואת הצבע שלו, כך שגלילה מלמעלה למטה היא
+   בדיוק ההליכה מדו עד סי — המבנה של הפלטפורמה, לא קישוט.
+   ============================================================ */
+
+:root {
+  --paper:      #FCF9F4;
+  --paper-2:    #F5EFE5;
+  --card:       #FFFFFF;
+  --ink:        #232830;
+  --ink-soft:   #5A6270;
+  --ink-faint:  #8A919C;
+  --rule:       #E6DED1;
+
+  --orange:     #E8730C;
+  --orange-dk:  #C75B00;
+  --blue:       #2C5FA8;
+  --blue-dk:    #1B4478;
+  --amber:      #F2A81D;
+  --teal:       #17A79B;
+
+  --do:  #3E7AB0;
+  --re:  #7C64A8;
+  --mi:  #C94D64;
+  --fa:  #C1811F;
+  --sol: #10685E;
+  --la:  #1F8A8C;
+  --si:  #8B3A73;
+
+  --shadow-sm: 0 2px 10px rgba(35, 40, 48, .07);
+  --shadow-md: 0 10px 30px rgba(35, 40, 48, .10);
+  --shadow-lg: 0 24px 60px rgba(35, 40, 48, .14);
+
+  --wrap: 68rem;
+  --read: 40rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:     #14161B;
+    --paper-2:   #1B1E25;
+    --card:      #1E222A;
+    --ink:       #ECEEF2;
+    --ink-soft:  #A8B0BD;
+    --ink-faint: #79818E;
+    --rule:      #2C313B;
+
+    --orange:    #FF9038;
+    --orange-dk: #FFA75C;
+    --blue:      #6E9EE0;
+    --blue-dk:   #9BBDEC;
+    --amber:     #FFC24D;
+    --teal:      #34C6B9;
+
+    --do:  #6FA3D6; --re:  #A98FD4; --mi:  #E8798E;
+    --fa:  #E0A945; --sol: #35A192; --la:  #45B7B9; --si:  #C77BAF;
+
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, .4);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, .5);
+    --shadow-lg: 0 24px 60px rgba(0, 0, 0, .6);
+  }
+}
+:root[data-theme="dark"] {
+  --paper:     #14161B;
+  --paper-2:   #1B1E25;
+  --card:      #1E222A;
+  --ink:       #ECEEF2;
+  --ink-soft:  #A8B0BD;
+  --ink-faint: #79818E;
+  --rule:      #2C313B;
+
+  --orange:    #FF9038;
+  --orange-dk: #FFA75C;
+  --blue:      #6E9EE0;
+  --blue-dk:   #9BBDEC;
+  --amber:     #FFC24D;
+  --teal:      #34C6B9;
+
+  --do:  #6FA3D6; --re:  #A98FD4; --mi:  #E8798E;
+  --fa:  #E0A945; --sol: #35A192; --la:  #45B7B9; --si:  #C77BAF;
+
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, .4);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, .5);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, .6);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Assistant", "Segoe UI", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .display {
+  font-family: "Secular One", "Assistant", system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+  text-wrap: balance;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p { margin: 0; }
+img, video { max-width: 100%; display: block; }
+a { color: inherit; }
+
+.wrap { width: min(100% - 2.5rem, var(--wrap)); margin-inline: auto; }
+.read { max-width: var(--read); }
+
+/* ---------- כפתורים ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .95rem 2rem;
+  border-radius: 999px;
+  background: var(--blue);
+  color: #fff;
+  font-family: "Secular One", sans-serif;
+  font-size: 1.0625rem;
+  text-decoration: none;
+  box-shadow: var(--shadow-md);
+  transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+  border: 0;
+  cursor: pointer;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); background: var(--blue-dk); }
+.btn:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+.btn--orange { background: var(--orange); }
+.btn--orange:hover { background: var(--orange-dk); }
+.btn--lg { padding: 1.15rem 2.6rem; font-size: 1.1875rem; }
+
+/* ---------- כותרת עליונה ---------- */
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+.top__in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: .7rem;
+}
+/* קובץ הלוגו המקורי של המעצב, שקוף וחד. אין להחליף אותו בצילום של
+   השלט — הוא מטושטש ונושא רקע תכלת שצריך לחתוך. */
+.mark {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.mark img { height: 3.2rem; width: auto; }
+@media (max-width: 30rem) { .mark img { height: 2.5rem; } }
+/* ארבעה קישורי קפיצה, לא עשרה — הרצועה צריכה להישאר רצועה. הם מסמנים את
+   ארבעת הדברים שהורה מחפש לפני שהוא מחליט; כל השאר נקרא בדרך.
+
+   מוסתרים בנייד: שם הדף הוא גלילה, והם רק היו דוחקים את הלוגו ואת כפתור
+   ההצטרפות, שהם מה שחשוב במסך צר. */
+.topnav { display: none; }
+@media (min-width: 60rem) {
+  .topnav {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    margin-inline-start: 2.5rem;
+    margin-inline-end: auto;
+  }
+  .topnav a {
+    text-decoration: none;
+    font-size: .9375rem;
+    color: var(--ink-soft);
+    padding-block: .35rem;
+    border-bottom: 2px solid transparent;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .topnav a:hover { color: var(--ink); border-bottom-color: var(--orange); }
+  .topnav a:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+}
+
+/* הרצועה דבוקה למעלה, ולכן קפיצה לפרק חייבת לעצור מתחתיה ולא מאחוריה. */
+html { scroll-behavior: smooth; }
+:where(section[id]) { scroll-margin-top: 5.5rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.top .btn { padding: .6rem 1.35rem; font-size: .9375rem; box-shadow: none; }
+
+/* המילה "סול" בלוגו כחולה־כהה, ולכן הרצועה העליונה נשארת בהירה גם
+   במצב כהה. זו הדרך לשמור על הלוגו שקוף בלי שהוא ייעלם על רקע כהה. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .top { background: #F3EFE7; border-bottom-color: #DCD4C6; }
+}
+:root[data-theme="dark"] .top { background: #F3EFE7; border-bottom-color: #DCD4C6; }
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(3rem, 8vw, 6rem) clamp(3rem, 7vw, 5rem);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -30% -10% auto -10%;
+  height: 70%;
+  background:
+    radial-gradient(52% 62% at 78% 32%, color-mix(in srgb, var(--amber) 30%, transparent), transparent 70%),
+    radial-gradient(46% 56% at 18% 18%, color-mix(in srgb, var(--blue) 22%, transparent), transparent 70%),
+    radial-gradient(40% 50% at 50% 78%, color-mix(in srgb, var(--teal) 20%, transparent), transparent 70%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+.hero__in {
+  position: relative;
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+@media (min-width: 62rem) {
+  .hero__in { grid-template-columns: 1.05fr .95fr; }
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: "Heebo", sans-serif;
+  font-weight: 700;
+  font-size: .8125rem;
+  letter-spacing: .07em;
+  color: var(--orange);
+  background: color-mix(in srgb, var(--orange) 12%, transparent);
+  padding: .4rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 1.25rem;
+}
+.hero h1 { font-size: clamp(2.1rem, 5.6vw, 3.5rem); }
+.hero h1 em { font-style: normal; color: var(--orange); }
+.hero__sub {
+  margin-top: 1.15rem;
+  font-size: clamp(1.0625rem, 2vw, 1.25rem);
+  color: var(--ink-soft);
+  max-width: 34rem;
+}
+/* המשפט הראשון אחרי הכותרת נושא את ההבטחה, והשני מסביר אותה — ולכן הוא
+   גדול ממנו במעט וכהה יותר. */
+.hero__sub--lead {
+  font-family: "Secular One", sans-serif;
+  color: var(--ink);
+  font-size: clamp(1.1875rem, 2.4vw, 1.4375rem);
+  line-height: 1.4;
+}
+.hero__sub--lead + .hero__sub { margin-top: .85rem; }
+.hero__cta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .9rem 1.25rem; align-items: center; }
+.hero__note { font-size: .9375rem; color: var(--ink-faint); }
+
+.hero__art {
+  position: relative;
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: var(--card);
+  aspect-ratio: 4 / 3;
+}
+.hero__art img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- סרטון להורים ---------- */
+/* הסרטון צולם לאורך, כמו טלפון. במקום למתוח אותו לרוחב המסך
+   הוא מוצג בדיוק ביחס שבו הוא צולם, ליד הטקסט ולא מתחתיו. */
+.film__in {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+@media (min-width: 54rem) { .film__in { grid-template-columns: 1fr .8fr; } }
+/* מסגרת כתומה סביב הסרטון, כמו בדף המקורי של הני. הרוחב נלקח
+   מהמסגרת, לא מתווסף לה, כדי שהיא לא תדחוף את הפריסה. */
+.film__player {
+  border-radius: 1.75rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: #000;
+  max-width: 23rem;
+  margin-inline: auto;
+  aspect-ratio: 9 / 16;
+}
+/* קצה דק ופנימי במקום מסגרת צבעונית עבה: הסרטון הוא הנושא, והמסגרת
+   אמורה להחזיק אותו ולא להתחרות בו. הצל עושה את ההרמה, והקו הלבן
+   החצי-שקוף רק מפריד בין הווידאו לרקע. */
+.film__player::after {
+  content: ;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16);
+  pointer-events: none;
+}
+.film__player { position: relative; }
+.film__player video { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- הפסנתר במתנה ---------- */
+/* רצועה טורקיז משלה, כדי שתיקרא כהצעה ולא כעוד פרק בדף. הכפתור לבן ולא
+   כחול: זו לא רכישה, והוא לא אמור להיראות כמו כפתור ההצטרפות. */
+.gift {
+  background: var(--teal);
+  color: #fff;
+  padding-block: clamp(2.25rem, 5vw, 3.25rem);
+}
+.gift__in {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+@media (min-width: 54rem) { .gift__in { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+.gift__tag {
+  display: inline-block;
+  font-family: "Heebo", sans-serif;
+  font-weight: 900;
+  font-size: .75rem;
+  letter-spacing: .12em;
+  background: rgba(255, 255, 255, .18);
+  padding: .3rem .85rem;
+  border-radius: 999px;
+  margin-bottom: .75rem;
+}
+.gift h2 { font-size: clamp(1.45rem, 3.4vw, 2rem); }
+.gift p { margin-top: .7rem; opacity: .93; max-width: 34rem; }
+.gift__btn { background: #fff; color: var(--teal); white-space: nowrap; margin-top: 1.4rem; }
+/* הוויזואל של הקמפיין, אנכי כפי שצולם. גובה חסום כדי שהרצועה תישאר רצועה
+   ולא תהפוך לפרק בפני עצמו. */
+/* חלון דפדפן סביב צילום של הפסנתר האמיתי. הוא אומר "אונליין" בלי מילה,
+   ומראה להורה בדיוק מה הוא מקבל - במקום איור של כלי שנראה אמיתי. */
+.browser {
+  border-radius: .9rem;
+  overflow: hidden;
+  background: #FFFFFF;
+  box-shadow: 0 18px 46px rgba(0, 0, 0, .28);
+  max-width: 30rem;
+  margin-inline: auto;
+  width: 100%;
+}
+.browser__bar {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .5rem .7rem;
+  background: #ECE9E3;
+  border-bottom: 1px solid #DCD7CE;
+}
+.browser__dot {
+  width: .5rem;
+  height: .5rem;
+  border-radius: 50%;
+  background: #C9C3B8;
+  flex: none;
+}
+.browser__url {
+  flex: 1;
+  margin-inline-start: .5rem;
+  background: #FFFFFF;
+  border-radius: 999px;
+  padding: .15rem .7rem;
+  font-size: .6875rem;
+  color: #7A736A;
+  text-align: center;
+}
+.browser__shot { width: 100%; height: auto; display: block; background: #111; }
+.gift__btn:hover { background: #fff; color: var(--teal); }
+
+/* ---------- הסיפור של המשפחה ---------- */
+/* אותו כרטיס לחיצה שיש להמלצות, כדי שלדף תהיה שפה אחת לווידאו. */
+.story__in {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+@media (min-width: 54rem) { .story__in { grid-template-columns: 1fr .62fr; } }
+.story__card {
+  position: relative;
+  display: block;
+  aspect-ratio: 9 / 16;
+  max-width: 19rem;
+  margin-inline: auto;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: #000;
+  box-shadow: var(--shadow-lg);
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.story__card:hover { transform: translateY(-4px); }
+.story__card:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+.story__card img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- הסולם: שורת שבע הדמויות ---------- */
+.scale-band {
+  background: var(--paper-2);
+  border-block: 1px solid var(--rule);
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+}
+.scale-band__head { text-align: center; margin-bottom: 2rem; }
+.scale-band h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); }
+.scale-band p { color: var(--ink-soft); margin-top: .6rem; }
+
+/* הסולם נקרא משמאל לימין — דו בקצה השמאלי ואחריו רה, בדיוק כמו
+   על הפסנתר. הדף כולו מימין לשמאל, ולכן השורה הזו הופכת כיוון
+   בכוונה. אין לשנות אותה לכיוון הדף. */
+.scale-row {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: clamp(.4rem, 1.4vw, 1rem);
+  direction: ltr;
+}
+/* בנייד שבע דמויות לא מתחלקות לארבע עמודות בלי להשאיר שורה שנייה
+   דחוקה לצד אחד. במקום זה הן נשברות לארבע ושלוש, והשלוש ממורכזות
+   מתחתיהן — פירמידה מכוונת במקום שורה קטועה. הכיוון נשאר משמאל לימין
+   כדי שדו יישאר ראשון. */
+@media (max-width: 44rem) {
+  .scale-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .scale-row .note { flex: 0 0 calc(25% - .75rem); }
+}
+.note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .55rem;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+.note__disc {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--card);
+  border: 3px solid var(--c);
+  box-shadow: var(--shadow-sm);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.note:hover .note__disc,
+.note:focus-visible .note__disc { transform: translateY(-4px) scale(1.03); box-shadow: var(--shadow-md); }
+.note:focus-visible { outline: none; }
+.note:focus-visible .note__disc { outline: 3px solid var(--c); outline-offset: 3px; }
+.note__disc video { width: 100%; height: 100%; object-fit: cover; }
+.note__name {
+  font-family: "Secular One", sans-serif;
+  font-size: clamp(.875rem, 1.7vw, 1.0625rem);
+  color: var(--c);
+}
+
+/* ---------- פרק ---------- */
+.sec { padding-block: clamp(3rem, 7vw, 5.5rem); }
+.sec--tint { background: var(--paper-2); border-block: 1px solid var(--rule); }
+
+.sec__head { margin-bottom: clamp(1.75rem, 4vw, 2.75rem); }
+.sec__stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  margin-bottom: .45rem;
+}
+.sec__dot {
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  background: var(--c);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-family: "Secular One", sans-serif;
+  font-size: .8125rem;
+  flex: none;
+}
+.sec__stamp span {
+  font-family: "Heebo", sans-serif;
+  font-weight: 700;
+  font-size: .8125rem;
+  letter-spacing: .08em;
+  color: var(--c);
+}
+.sec h2 { font-size: clamp(1.7rem, 4vw, 2.6rem); }
+.sec__lede { margin-top: .9rem; color: var(--ink-soft); font-size: 1.125rem; max-width: var(--read); }
+
+/* המשפט שעונה על הכותרת. הכותרת אומרת מה המטרה אינה, וזה אומר מה היא כן —
+   ולכן הוא נושא את משקל הכותרת ולא של גוף הטקסט. */
+.sec__answer {
+  font-family: "Secular One", sans-serif;
+  color: var(--c, var(--orange));
+  font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+  line-height: 1.35;
+  margin-top: .7rem;
+  max-width: var(--read);
+}
+
+/* ---------- הצהרה ---------- */
+.claim {
+  background: linear-gradient(135deg, var(--orange), color-mix(in srgb, var(--orange) 70%, var(--amber)));
+  color: #fff;
+  border-radius: 1.5rem;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+.claim p { font-family: "Secular One", sans-serif; font-size: clamp(1.15rem, 2.8vw, 1.7rem); line-height: 1.45; }
+.claim p + p { margin-top: .85rem; font-family: "Assistant", sans-serif; font-size: 1.0625rem; opacity: .95; }
+
+/* ---------- קלפים ---------- */
+.cards { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
+@media (min-width: 48rem) { .cards--3 { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 48rem) { .cards--2 { grid-template-columns: repeat(2, 1fr); } }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 1.25rem;
+  padding: clamp(1.4rem, 3vw, 1.9rem);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block: 0;
+  width: 5px;
+  background: var(--c, var(--orange));
+}
+.card h3 { font-size: 1.3125rem; color: var(--c, var(--ink)); }
+.card p { margin-top: .7rem; color: var(--ink-soft); }
+
+/* ---------- רשימות ---------- */
+.ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: .8rem; }
+.ticks li { display: flex; gap: .75rem; align-items: flex-start; }
+.ticks svg { flex: none; margin-top: .38rem; }
+.ticks--2 { grid-template-columns: 1fr; }
+
+/* רשימת מה שמחכה בפנים. אותו אייקון של שאר הרשימות בדף, כדי שהפרק הזה
+   לא ייראה כמו אורח. */
+.inside__intro {
+  font-family: "Secular One", sans-serif;
+  font-size: 1.1875rem;
+  margin-bottom: 1.25rem;
+}
+.numbered {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.35rem;
+}
+.numbered { max-width: 46rem; }
+.numbered li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .85rem;
+  align-items: start;
+  color: var(--ink-soft);
+}
+.numbered__i {
+  flex: none;
+  margin-top: .42rem;
+}
+.numbered strong { display: block; color: var(--ink); font-weight: 700; font-size: 1.0625rem; line-height: 1.5; }
+.numbered__d { display: block; margin-top: .15rem; }
+
+/* ---------- למי זה מתאים ---------- */
+/* פסקה אחת שמתארת ילד, ולא רשימה של מה ההורה מקבל — ולכן היא זורמת ולא
+   מנוקדת. השורה האחרונה אומרת מה לא צריך, וזה מה שמרגיע הורה מהסס, לכן
+   היא עומדת בפני עצמה. */
+.suits__lead {
+  font-family: "Secular One", sans-serif;
+  font-size: 1.1875rem;
+  margin-bottom: .6rem;
+}
+.suits__body {
+  font-size: clamp(1.0625rem, 2vw, 1.1875rem);
+  color: var(--ink-soft);
+  max-width: 44rem;
+  line-height: 1.8;
+}
+.suits__note {
+  margin-top: 1.75rem;
+  padding-inline-start: 1.1rem;
+  border-inline-start: 3px solid var(--fa);
+  color: var(--ink);
+  font-family: "Secular One", sans-serif;
+  font-size: clamp(1.0625rem, 2vw, 1.1875rem);
+  line-height: 1.6;
+  max-width: 44rem;
+}
+@media (min-width: 48rem) { .ticks--2 { grid-template-columns: repeat(2, 1fr); column-gap: 2.5rem; } }
+
+/* ---------- כאב ---------- */
+.pain {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+@media (min-width: 54rem) { .pain { grid-template-columns: 1.35fr .65fr; gap: 2.5rem; } }
+.pain ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+.pain li { display: flex; gap: .85rem; color: var(--ink-soft); }
+.pain li::before {
+  content: "";
+  flex: none;
+  width: .55rem; height: .55rem;
+  margin-top: .68rem;
+  border-radius: 50%;
+  background: var(--orange);
+}
+.pain__punch {
+  font-family: "Secular One", sans-serif;
+  color: var(--orange);
+  font-size: 1.1875rem;
+  margin-top: 1.5rem;
+}
+.aside-card {
+  background: var(--orange);
+  color: #fff;
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  font-family: "Secular One", sans-serif;
+  font-size: 1.3125rem;
+  line-height: 1.4;
+  box-shadow: var(--shadow-md);
+}
+/* "דרך משחק" הוא הלב של המשפט — הוא עונה על "איך", ולכן הוא גדול מהשורה
+   שמעליו ונושא קו מתחתיו. */
+.aside-card em {
+  font-style: normal;
+  display: block;
+  margin-top: .55rem;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  padding-bottom: .3rem;
+  border-bottom: 3px solid rgba(255, 255, 255, .55);
+  width: fit-content;
+}
+
+/* ---------- מה בפנים ---------- */
+.inside {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+@media (min-width: 56rem) { .inside { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+.inside__art { border-radius: 1.5rem; overflow: hidden; box-shadow: var(--shadow-lg); }
+
+.bonus {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+  margin-top: 2.5rem;
+}
+@media (min-width: 48rem) { .bonus { grid-template-columns: 1fr auto; align-items: center; } }
+.bonus__box {
+  background: var(--amber);
+  color: #402A00;
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--shadow-md);
+}
+.bonus__tag {
+  font-family: "Heebo", sans-serif;
+  font-weight: 900;
+  letter-spacing: .12em;
+  font-size: .8125rem;
+}
+.bonus__box h3 { font-size: 1.375rem; margin-top: .35rem; }
+.bonus__box p { margin-top: .3rem; font-size: .9375rem; opacity: .85; }
+
+/* ---------- המלצות ---------- */
+/* ההמלצות הן סרטונים אנכיים ביוטיוב. כאן מוצגת תמונת הפתיחה שלהם
+   ולחיצה פותחת את הסרטון — בתצוגה מקדימה נגן יוטיוב חסום, ובאתר
+   האמיתי אפשר להחליף את הקישור בנגן מוטמע באותה מסגרת בדיוק. */
+.quotes { display: grid; gap: 1.25rem; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 56rem) { .quotes { grid-template-columns: repeat(4, 1fr); } }
+.quote {
+  position: relative;
+  display: block;
+  aspect-ratio: 9 / 16;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: #000;
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.quote:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.quote:focus-visible { outline: 3px solid var(--sol); outline-offset: 3px; }
+.quote img { width: 100%; height: 100%; object-fit: cover; }
+.quote__play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 3.6rem;
+  height: 2.55rem;
+  border-radius: .75rem;
+  background: #FF0033;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .45);
+}
+.quote__play::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 0; height: 0;
+  border-block: .55rem solid transparent;
+  border-inline-start: .9rem solid #fff;
+  border-inline-end: 0;
+}
+.quote__go {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 2.5rem .8rem .7rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, .75), transparent);
+  color: #fff;
+  font-size: .8125rem;
+  text-align: center;
+}
+
+/* ---------- מחיר ---------- */
+.price {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 1.75rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 54rem) { .price { grid-template-columns: 1.15fr .85fr; } }
+.price__list { padding: clamp(1.6rem, 4vw, 2.5rem); }
+.price__list ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+.price__list li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  align-items: baseline;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule);
+}
+.price__list li:last-child { border-bottom: 0; padding-bottom: 0; }
+.price__n {
+  font-family: "Heebo", sans-serif;
+  font-weight: 900;
+  color: var(--la);
+  font-variant-numeric: tabular-nums;
+  font-size: .9375rem;
+}
+.price__v {
+  font-family: "Heebo", sans-serif;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+.price__deal {
+  background: var(--la);
+  color: #fff;
+  padding: clamp(1.6rem, 4vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .5rem;
+  text-align: center;
+}
+/* המחיר המלא צריך להיקרא, לא רק להימחק — הורה שלא רואה אותו לא יודע מה
+   ההנחה שווה. לכן הוא גדול ובהיר יותר מגוף הטקסט, והקו נשאר עבה. */
+.price__was {
+  font-family: "Heebo", sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-size: 1.25rem;
+  font-weight: 700;
+  opacity: .9;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+.price__now {
+  font-family: "Secular One", sans-serif;
+  font-size: clamp(2.4rem, 7vw, 3.4rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.price__label { font-size: 1.0625rem; }
+.price__fine { font-size: .875rem; opacity: .85; margin-top: .35rem; }
+.price__deal .btn { margin-top: 1.1rem; align-self: center; background: #fff; color: var(--la); }
+.price__deal .btn:hover { background: #fff; color: var(--la); }
+
+/* ---------- חני ---------- */
+.about { display: grid; gap: 2rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 56rem) { .about { grid-template-columns: .8fr 1.2fr; gap: 3rem; } }
+/* דיוקן אמיתי ולא איור, ולכן לא עיגול: מסגרת עגולה על צילום לאורך חותכת
+   כתפיים ומשאירה ראש מרחף. מלבן רך ביחס של דיוקן, והמיקוד גבוה כדי
+   שהפנים יישארו בשליש העליון גם כשהמסך צר. הקו הדק בצבע הפרק במקום
+   מסגרת עבה — צילום לא צריך אותה. */
+.about__art {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: var(--shadow-lg);
+  background: var(--card);
+}
+.about__art img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+.about__art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid color-mix(in srgb, var(--si) 45%, transparent);
+  pointer-events: none;
+}
+@media (max-width: 56rem) { .about__art { max-width: 22rem; margin-inline: auto; } }
+
+/* בפרק הזה הכותרת היא שם של אדם, והתמונה היא הפנים שלו — הם שייכים זה
+   לזה, ולכן הרווח ביניהם קטן מזה שבשאר הפרקים. */
+.about-head { margin-bottom: 1.25rem; }
+.about p + p { margin-top: .9rem; }
+.about__punch { font-family: "Secular One", sans-serif; color: var(--si); font-size: 1.1875rem; line-height: 1.5; }
+
+/* ---------- שאלות ---------- */
+.faq { display: grid; gap: .5rem; max-width: 52rem; }
+details {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+details[open] { box-shadow: var(--shadow-sm); }
+summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.05rem 1.35rem;
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  font-family: "Secular One", sans-serif;
+  font-size: 1.0625rem;
+}
+summary::-webkit-details-marker { display: none; }
+summary:focus-visible { outline: 3px solid var(--si); outline-offset: -3px; }
+.faq__sign {
+  flex: none;
+  width: 1.6rem; height: 1.6rem;
+  border-radius: 50%;
+  border: 2px solid var(--si);
+  color: var(--si);
+  display: grid;
+  place-items: center;
+  font-family: "Heebo", sans-serif;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform .2s ease;
+}
+details[open] .faq__sign { transform: rotate(45deg); }
+details p { padding: 0 1.35rem 1.3rem; color: var(--ink-soft); }
+
+/* ---------- סיום ---------- */
+.close {
+  background: linear-gradient(140deg, var(--blue), var(--blue-dk));
+  color: #fff;
+  padding-block: clamp(3rem, 7vw, 4.5rem);
+  text-align: center;
+}
+.close h2 { font-size: clamp(1.7rem, 4.4vw, 2.6rem); }
+.close p { margin-top: .9rem; opacity: .9; max-width: 34rem; margin-inline: auto; }
+.close .btn { margin-top: 1.9rem; background: var(--amber); color: #402A00; }
+/* שלוש העובדות שמסירות היסוס ברגע האחרון: גיל, בלי פסנתר, בלי תפוגה.
+   הן מלוות את הכפתור ולכן קטנות ממנו, ולא מתחרות בו. */
+/* ---------- הסכמה לדיוור ---------- */
+.consent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: .55rem;
+  margin: .9rem auto 0;
+  max-width: 21rem;
+  text-align: start;
+  font-size: .8125rem;
+  line-height: 1.5;
+  opacity: .92;
+  cursor: pointer;
+}
+.consent span { flex: 1; text-align: start; }
+.consent input {
+  flex: none;
+  margin: .2rem 0 0;
+  width: 1rem;
+  height: 1rem;
+  accent-color: #FFFFFF;
+  cursor: pointer;
+}
+.consent.is-missing {
+  animation: consent-nudge .45s ease;
+}
+.consent.is-missing span { text-decoration: underline; text-underline-offset: 3px; }
+@keyframes consent-nudge {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+@media (prefers-reduced-motion: reduce) { .consent.is-missing { animation: none; } }
+
+.close__terms {
+  margin-top: 1rem;
+  font-size: .9375rem;
+  opacity: .85;
+}
+.close .btn:hover { background: #fff; color: var(--blue-dk); }
+
+.foot { padding-block: 2rem; text-align: center; color: var(--ink-faint); font-size: .875rem; }
+.foot a { color: inherit; }
+/* הקישור לתקנון חייב להיראות כמו קישור — הורה שמסמן הסכמה צריך לדעת
+   שאפשר לקרוא מה הוא מאשר. */
+/* שם המסמך לא נשבר לשתי שורות — "מדיניות" בשורה אחת ו"הפרטיות" בשנייה
+   נראה כמו תקלה. השבירה קורית קודם, במקום טבעי במשפט. */
+.consent a { text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+</style>
+
+<!-- ===================== כותרת ===================== -->
+<header class="top">
+  <div class="wrap top__in">
+    <a class="mark" href="#top" aria-label="המשפחה של סול - לראש הדף">
+      <img src="assets/logo.png" alt="סול | חני בר - מרחב מוסיקלי לפיתוח יצירתיות">
+    </a>
+    <nav class="topnav">
+      <a href="#בפנים">מה בפנים</a>
+      <a href="#המלצות">המלצות</a>
+      <a href="#הצטרפות">מחיר</a>
+      <a href="#שאלות">שאלות</a>
+    </nav>
+    <a class="btn" href="https://lp.smoove.io/i3m9" target="_blank" rel="noopener">להצטרפות</a>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="wrap hero__in">
+    <div>
+      <span class="eyebrow">לגילאי 4–8</span>
+      <h1>הדרך שבה ילדים<br><em>אוהבים ללמוד מוסיקה</em></h1>
+      <p class="hero__sub hero__sub--lead">כאן מוסיקה הופכת לעולם שילדים רוצים להיכנס אליו</p>
+      <p class="hero__sub">
+        סול והחברים מזמינים את הילדים לעולם של סיפורים, שירים, משחקים, יצירה
+        ונגינה - שבו כל הרפתקה מלמדת אותם מוסיקה, כמעט בלי להרגיש.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--lg" href="https://lp.smoove.io/i3m9" target="_blank" rel="noopener">מצטרפים למשפחה של סול</a>
+        <span class="hero__note">גישה מיידית · ללא הגבלה</span>
+      </div>
+    </div>
+    <div class="hero__art">
+      <img src="assets/family.jpg" alt="המשפחה של סול עומדת ליד הדלת, ותווים עפים באוויר">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== סרטון להורים ===================== -->
+<section class="sec film">
+  <div class="wrap film__in">
+    <div class="film__text">
+      <span class="eyebrow">רגע לפני שנכנסים פנימה</span>
+      <h2>אז מה זה בעצם המשפחה של סול?</h2>
+      <p class="sec__lede">תנו לי דקה להראות לכם למה יצרתי אותה, ומה הילד שלכם עומד לפגוש בפנים.</p>
+    </div>
+    <div class="film__player">
+      <video src="assets/parents.mp4" poster="assets/parents-poster.jpg" controls playsinline preload="none"></video>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== הסולם ===================== -->
+<section class="scale-band">
+  <div class="wrap">
+    <div class="scale-band__head">
+      <h2>מי אמר שתווים צריכים להיות סימנים על הדף?</h2>
+      <p>אצלנו יש להם שמות, פנים, אופי וסיפור.<br>הכירו את המשפחה של סול - שבע דמויות שהופכות את הצלילים לחברים שילדים זוכרים.<br><br>לחצו על דמות ובואו להכיר 🎵</p>
+    </div>
+    <div class="scale-row">
+      <button class="note" style="--c: var(--do)"  aria-label="הדמות של דו"><span class="note__disc"><video src="assets/n6.mp4" muted loop playsinline preload="metadata"></video></span><span class="note__name">דוֹ</span></button>
+      <button class="note" style="--c: var(--re)"  aria-label="הדמות של רה"><span class="note__disc"><video src="assets/n2.mp4" muted loop playsinline preload="metadata"></video></span><span class="note__name">רֶה</span></button>
+      <button class="note" style="--c: var(--mi)"  aria-label="הדמות של מי"><span class="note__disc"><video src="assets/n3.mp4" muted loop playsinline preload="metadata"></video></span><span class="note__name">מִי</span></button>
+      <button class="note" style="--c: var(--fa)"  aria-label="הדמות של פה"><span class="note__disc"><video src="assets/n4.mp4" muted loop playsinline preload="metadata"></video></span><span class="note__name">פָה</span></button>
+      <button class="note" style="--c: var(--sol)" aria-label="הדמות של סול"><span class="note__disc"><video src="assets/n5.mp4" muted loop playsinline preload="metadata"></video></span><span class="note__name">סוֹל</span></button>
+      <button class="note" style="--c: var(--la)"  aria-label="הדמות של לה"><span class="note__disc"><video src="assets/n1.mp4" muted loop playsinline preload="metadata"></video></span><span class="note__name">לָה</span></button>
+      <button class="note" style="--c: var(--si)"  aria-label="הדמות של סי"><span class="note__disc"><video src="assets/n7.mp4" muted loop playsinline preload="metadata"></video></span><span class="note__name">סִי</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== הסיפור של המשפחה ===================== -->
+<section class="sec story">
+  <div class="wrap story__in">
+    <div>
+      <span class="eyebrow">מתוך השיעור הראשון</span>
+      <h2>הסיפור של המשפחה של סול</h2>
+      <p class="sec__lede">
+        איך נולדה המשפחה, ואיך שבעה צלילים הפכו לשבע דמויות עם שמות, פנים וסיפור.
+        זה הסיפור שהילדים פוגשים ברגע שהם נכנסים - וכאן הוא פתוח לכולם.
+      </p>
+    </div>
+    <a class="story__card" href="https://youtu.be/vUjIHSO2kzI" target="_blank" rel="noopener">
+      <img src="assets/story.jpg" alt="רה מציירת - מתוך הסיפור של המשפחה של סול">
+      <span class="quote__play" aria-hidden="true"></span>
+      <span class="quote__go">צפייה בסיפור</span>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== הפסנתר במתנה ===================== -->
+<section class="gift">
+  <div class="wrap gift__in">
+    <div>
+      <span class="gift__tag">במתנה</span>
+      <h2>הפסנתר הווירטואלי של סול, במתנה</h2>
+      <p>
+        פסנתר אונליין שנפתח ישירות בדפדפן - במחשב, בנייד או בטאבלט. שבע הדמויות
+        על הקלידים, בלי להוריד ובלי להתקין, ובלי צורך בפסנתר אמיתי בבית.<br>
+        השאירו מייל ונשלח לכם את הקישור.
+      </p>
+      <a class="btn btn--lg gift__btn" href="https://lp.smoove.io/iido/" target="_blank" rel="noopener">קבלו את הפסנתר הווירטואלי</a>
+    </div>
+    <div class="browser" aria-hidden="true">
+      <div class="browser__bar">
+        <span class="browser__dot"></span>
+        <span class="browser__dot"></span>
+        <span class="browser__dot"></span>
+        <span class="browser__url">הפסנתר של סול</span>
+      </div>
+      <img class="browser__shot" src="assets/piano.jpg" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== דו - המטרה ===================== -->
+<section class="sec" style="--c: var(--do)">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="sec__stamp"><span class="sec__dot">דו</span><span>המטרה</span></span>
+      <h2>המטרה שלנו אינה ללמד כל ילד להיות מוסיקאי.</h2>
+      <p class="sec__answer">היא לתת לילדים לגלות מה הם מסוגלים לעשות.</p>
+      <p class="sec__lede">
+        דרך מוסיקה, משחק ודמיון, ילדים מתנסים, מצליחים, מעזים לנסות שוב -
+        ומגלים שהלמידה יכולה להיות מקום של שמחה, סקרנות וביטחון.
+      </p>
+    </div>
+
+    <div class="cards cards--3">
+      <article class="card" style="--c: var(--do)">
+        <h3>הילד חווה הצלחה</h3>
+        <p>כל משחק וכל שיר בנויים כך שהילד יכול להשתתף, להצליח ולהרגיש: "אני יכול!" - כבר מההתחלה.</p>
+      </article>
+      <article class="card" style="--c: var(--la)">
+        <h3>הילד מתאהב במוסיקה</h3>
+        <p>דרך דמויות, סיפורים, שירים ומשחקים, המוסיקה הופכת ממשהו שצריך "ללמוד" לעולם שהילד רוצה לחזור אליו.</p>
+      </article>
+      <article class="card" style="--c: var(--fa)">
+        <h3>זמן מסך איכותי</h3>
+        <p>במקום עוד סרטון או משחק ללא ערך, הילד נהנה מחוויה אינטראקטיבית שמשלבת משחק, מוסיקה ולמידה מתוך הנאה.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== אתם מכירים את זה ===================== -->
+<section class="sec sec--tint">
+  <div class="wrap pain">
+    <div>
+      <div class="sec__head" style="margin-bottom: 1.5rem">
+        <h2 style="color: var(--orange)">אתם מכירים את זה?</h2>
+      </div>
+      <ul>
+        <li>אתם רוצים לתת לילד שלכם יותר מעוד משחק או סרטון.</li>
+        <li>אתם רוצים לראות אותו מנסה, יוצר, מצליח - ובעיקר מאמין בעצמו.</li>
+        <li>אתם אוהבים מוסיקה ורוצים לפתוח בפניו את העולם הזה, בדרך שמתאימה לילדים.</li>
+        <li>ואתם מחפשים זמן מסך שלא משאיר אותו רק צופה - אלא גורם לו לשיר, לשחק, לחשוב וליצור.</li>
+      </ul>
+      <p class="pain__punch">בדיוק בשביל זה יצרנו את "המשפחה של סול"</p>
+    </div>
+    <aside class="aside-card">
+      הדרך שבה ילדים מתאהבים במוסיקה
+      <em>דרך משחק</em>
+    </aside>
+  </div>
+</section>
+
+<!-- ===================== רה - מה הילד יקבל ===================== -->
+<section class="sec" style="--c: var(--re)">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="sec__stamp"><span class="sec__dot">רה</span><span>מה הילד מקבל</span></span>
+      <h2>מרגע ההרשמה הילד נכנס לעולם של המשפחה של סול.</h2>
+      <p class="sec__lede">
+        בכל כניסה מחכה לו משהו חדש לגלות - משחק, דמות, שיר או אתגר קצר.<br>
+        לא צריך לדעת לקרוא, לא צריך ניסיון קודם במוסיקה, ואפילו לא חייבים פסנתר בבית. פשוט נכנסים ומתחילים לשחק.
+      </p>
+    </div>
+
+    <div class="inside">
+      <div>
+        <p style="font-family: 'Secular One', sans-serif; font-size: 1.1875rem; margin-bottom: 1.2rem">
+          דרך משחקים, שירים והתנסויות מוסיקליות, הילד שלכם יגלה איך:
+        </p>
+        <ul class="ticks">
+          <li><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="#7C64A8" stroke-width="2"/><path d="M6 10.4l2.6 2.6L14 7.6" fill="none" stroke="#7C64A8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>לפתח קואורדינציה, הקשבה וחוש קצב.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="#7C64A8" stroke-width="2"/><path d="M6 10.4l2.6 2.6L14 7.6" fill="none" stroke="#7C64A8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>ליהנות מחוויה שגורמת לו לרצות לחזור ולשחק שוב ושוב.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="#7C64A8" stroke-width="2"/><path d="M6 10.4l2.6 2.6L14 7.6" fill="none" stroke="#7C64A8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>לשתף אתכם בהצלחות וברגעים של גאווה.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="#7C64A8" stroke-width="2"/><path d="M6 10.4l2.6 2.6L14 7.6" fill="none" stroke="#7C64A8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>להכיר את עולם המוסיקה בצורה טבעית ומהנה.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="#7C64A8" stroke-width="2"/><path d="M6 10.4l2.6 2.6L14 7.6" fill="none" stroke="#7C64A8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>לפתח ביטחון עצמי באמצעות הצלחות לאורך הדרך.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="#7C64A8" stroke-width="2"/><path d="M6 10.4l2.6 2.6L14 7.6" fill="none" stroke="#7C64A8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>להגביר יצירתיות, דמיון וסקרנות.</span></li>
+        </ul>
+      </div>
+      <div class="inside__art">
+        <img src="assets/hug.jpg" alt="ילד וילדה ליד הפסנתר, עם תווים מוזהבים באוויר">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== מי - מה מחכה בפנים ===================== -->
+<section class="sec sec--tint" style="--c: var(--mi)" id="בפנים">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="sec__stamp"><span class="sec__dot">מי</span><span>מה מחכה לכם בפנים</span></span>
+      <h2>עולם מוסיקלי שילדים אוהבים לגלות</h2>
+    </div>
+
+    <p class="inside__intro">בפנים מחכים להם:</p>
+    <ol class="numbered">
+      <li><svg class="numbered__i" width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#C94D64"/><path d="M8 6.5l5 3.5-5 3.5z" fill="#fff"/></svg><span><strong>משחקים אינטראקטיביים</strong><span class="numbered__d">שמזמינים אותם להקשיב, לחשוב ולפעול בעצמם.</span></span></li>
+      <li><svg class="numbered__i" width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#C94D64"/><path d="M8 6.5l5 3.5-5 3.5z" fill="#fff"/></svg><span><strong>נגינה פשוטה ומהנה</strong><span class="numbered__d">צעדים קטנים שמאפשרים לילד להתחיל לנגן ולהרגיש הצלחה.</span></span></li>
+      <li><svg class="numbered__i" width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#C94D64"/><path d="M8 6.5l5 3.5-5 3.5z" fill="#fff"/></svg><span><strong>המקלדת הווירטואלית של סול</strong><span class="numbered__d">כדי שאפשר יהיה להתחיל גם בלי פסנתר בבית.</span></span></li>
+      <li><svg class="numbered__i" width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#C94D64"/><path d="M8 6.5l5 3.5-5 3.5z" fill="#fff"/></svg><span><strong>היכרות עם תווים דרך משחק</strong><span class="numbered__d">בלי דפי עבודה ובלי צורך לדעת לקרוא מראש.</span></span></li>
+      <li><svg class="numbered__i" width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#C94D64"/><path d="M8 6.5l5 3.5-5 3.5z" fill="#fff"/></svg><span><strong>פעילויות של קצב, הקשבה ויצירה</strong><span class="numbered__d">שמפתחות יכולות מוסיקליות בדרך טבעית ומשחקית.</span></span></li>
+      <li><svg class="numbered__i" width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#C94D64"/><path d="M8 6.5l5 3.5-5 3.5z" fill="#fff"/></svg><span><strong>סרטוני הדרכה לילדים, בדיוק איפה שצריך</strong><span class="numbered__d">כדי שיוכלו להבין מה עושים ולהמשיך להתנסות באופן עצמאי.</span></span></li>
+      <li><svg class="numbered__i" width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#C94D64"/><path d="M8 6.5l5 3.5-5 3.5z" fill="#fff"/></svg><span><strong>שירים, משחקים ופעילויות מגוונות</strong><span class="numbered__d">כדי שכל ילד יוכל למצוא את הדרך שהוא הכי נהנה ללמוד בה.</span></span></li>
+      <li><svg class="numbered__i" width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#C94D64"/><path d="M8 6.5l5 3.5-5 3.5z" fill="#fff"/></svg><span><strong>העולם ממשיך לגדול</strong><span class="numbered__d">עם שירים, משחקים ופעילויות חדשות.</span></span></li>
+    </ol>
+
+    <div class="bonus">
+      <div class="bonus__box">
+        <div class="bonus__tag">- בונוס -</div>
+        <h3>שיעור און־ליין לייב עם חני</h3>
+        <p>למצטרפים החודש</p>
+      </div>
+      <a class="btn btn--orange btn--lg" href="https://lp.smoove.io/i3m9" target="_blank" rel="noopener">מצטרפים למשפחה של סול</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== הצהרה ===================== -->
+<section class="sec">
+  <div class="wrap">
+    <div class="claim">
+      <p>מוסיקה היא לא המטרה - היא הדרך.</p>
+      <p>דרך לשחק, לנסות, ליצור, להצליח - ולגלות כמה כיף ללמוד משהו חדש.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== פה - למי זה מתאים ===================== -->
+<section class="sec" style="--c: var(--fa)">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="sec__stamp"><span class="sec__dot">פה</span><span>למי זה מתאים</span></span>
+      <h2>המשפחה של סול מתאימה לילדים בגילאי 4–8</h2>
+    </div>
+    <p class="suits__lead">במיוחד אם הילד שלכם…</p>
+    <p class="suits__body">
+      אוהב לשחק, לשיר ולגלות דברים חדשים - בין אם הוא כבר נמשך למוסיקה
+      ובין אם זו הפעם הראשונה שהוא פוגש אותה מקרוב.
+    </p>
+    <p class="suits__note">
+      לא צריך לדעת לנגן. לא צריך לדעת לקרוא תווים. ולא צריך פסנתר בבית כדי להתחיל.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== סול - המלצות ===================== -->
+<section class="sec sec--tint" style="--c: var(--sol)" id="המלצות">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="sec__stamp"><span class="sec__dot">סול</span><span>לקוחות ממליצים</span></span>
+      <h2>הורים שמכירים את הדרך של סול מספרים</h2>
+    </div>
+    <div class="quotes">
+      <a class="quote" href="https://www.youtube.com/shorts/WjhTLkgzroQ" target="_blank" rel="noopener">
+        <img src="assets/q-WjhTLkgzroQ.jpg" alt="אמא מספרת על המשפחה של סול"><span class="quote__play" aria-hidden="true"></span><span class="quote__go">צפייה בהמלצה</span>
+      </a>
+      <a class="quote" href="https://www.youtube.com/shorts/ngkn69vPDxc" target="_blank" rel="noopener">
+        <img src="assets/q-ngkn69vPDxc.jpg" alt="אמא מספרת על המשפחה של סול"><span class="quote__play" aria-hidden="true"></span><span class="quote__go">צפייה בהמלצה</span>
+      </a>
+      <a class="quote" href="https://www.youtube.com/shorts/TPU6x6Tc-SI" target="_blank" rel="noopener">
+        <img src="assets/q-TPU6x6Tc-SI.jpg" alt="אמא מספרת על המשפחה של סול"><span class="quote__play" aria-hidden="true"></span><span class="quote__go">צפייה בהמלצה</span>
+      </a>
+      <a class="quote" href="https://www.youtube.com/shorts/ONmXL3KNPYI" target="_blank" rel="noopener">
+        <img src="assets/q-ONmXL3KNPYI.jpg" alt="אמא מספרת על המשפחה של סול"><span class="quote__play" aria-hidden="true"></span><span class="quote__go">צפייה בהמלצה</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== לה - ההשקעה ===================== -->
+<section class="sec" style="--c: var(--la)" id="הצטרפות">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="sec__stamp"><span class="sec__dot">לה</span><span>ההשקעה</span></span>
+      <h2>כל העולם של סול במקום אחד</h2>
+    </div>
+
+    <div class="price">
+      <div class="price__list">
+        <ol>
+          <li><span class="price__n">01</span><span>שימוש מיידי וגישה ללא הגבלה לכל התכנים במערכת</span><span class="price__v">380 ש"ח</span></li>
+          <li><span class="price__n">02</span><span>תכנים חדשים שמצטרפים למשפחה לאורך הדרך</span><span class="price__v">120 ש"ח</span></li>
+          <li><span class="price__n">03</span><span>שיעור און־ליין לייב עם חני</span><span class="price__v">130 ש"ח</span></li>
+        </ol>
+      </div>
+      <div class="price__deal">
+        <div class="price__was">630 ש"ח</div>
+        <div class="price__label">מחיר השקה מיוחד</div>
+        <div class="price__now">333 ש"ח</div>
+        <div class="price__fine">למצטרפים החודש · ניתן לחלק לעד 6 תשלומים באשראי</div>
+        <a class="btn btn--lg" href="https://lp.smoove.io/i3m9" target="_blank" rel="noopener">מצטרפים למשפחה של סול</a>
+        <label class="consent" for="consent">
+          <input type="checkbox" id="consent">
+          <span>אני מרשה לשלוח לי דיוור במייל ו/או SMS ומאשר את <a href="privacy.pdf" target="_blank" rel="noopener">מדיניות הפרטיות</a></span>
+        </label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== סי - נעים להכיר ===================== -->
+<section class="sec sec--tint" style="--c: var(--si)" id="הכירו">
+  <div class="wrap">
+    <div class="sec__head about-head">
+      <span class="sec__stamp"><span class="sec__dot">סי</span><span>נעים להכיר</span></span>
+      <h2>חני בר</h2>
+    </div>
+    <div class="about">
+      <div class="about__art"><img src="assets/hani.jpg" alt="חני בר"></div>
+      <div>
+        <p>כילדה, המוסיקה הייתה המקום שבו מצאתי את הקול שלי. דרך הפסנתר והיצירה למדתי לבטא את עצמי ולהרגיש שרואים אותי.</p>
+        <p>במשך השנים לימדתי אלפי ילדים במגוון מסגרות. בשיעורים פרטיים, בתי ספר, גני ילדים, Y‑tek, במפגשים פרונטליים ומפגשי און־ליין.</p>
+        <p>שוב ושוב ראיתי ילדים שלא מתחברים למוסיקה רק בגלל הדרך שבה מציגים להם אותה - בצורה יבשה ותאורטית. הבנתי שאם אדבר בשפה של ילדים, הכל ישתנה. וככה נולדה שיטת הלימוד <strong>"המשפחה של סול"</strong> שמבוססת על משחקיות, הנאה, סיפוק וחוויה.</p>
+        <p class="about__punch">היום אני מזמינה עוד ילדים להצטרף לעולם שבו תווים הופכים לדמויות, מוסיקה הופכת למשחק, והלמידה הופכת לחוויה של סקרנות, גילוי והנאה.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== שאלות ===================== -->
+<section class="sec" style="--c: var(--si)" id="שאלות">
+  <div class="wrap">
+    <div class="sec__head"><h2>שאלות נפוצות</h2></div>
+    <div class="faq">
+
+      <details><summary><span class="faq__sign">+</span>לאיזה גיל המשפחה של סול מתאימה?</summary>
+        <p>המשפחה של סול מיועדת לילדים בגילאי 4–8. הפעילויות בנויות כך שכל ילד יכול לפגוש את המוסיקה בדרך שמתאימה לגיל ולקצב שלו - דרך משחק, הקשבה, שירים, יצירה ונגינה.</p>
+      </details>
+
+      <details><summary><span class="faq__sign">+</span>צריך ידע קודם במוסיקה?</summary>
+        <p>ממש לא. אין צורך לדעת תווים, לנגן או להכיר מושגים מוסיקליים מראש. הילדים פוגשים את המוסיקה בהדרגה, דרך משחק, התנסות והנאה.</p>
+      </details>
+
+      <details><summary><span class="faq__sign">+</span>חייבים פסנתר בבית?</summary>
+        <p>ממש לא. לא צריך פסנתר או אורגנית בבית כדי להצטרף למשפחה של סול.</p>
+        <p>בתוך העולם מחכה לילדים הפסנתר הווירטואלי של סול, שמאפשר להם להכיר את הקלידים, להתנסות ולנגן כחלק מהמשחק והלמידה - ישירות מהמחשב, מהנייד או מהטאבלט.</p>
+      </details>
+
+      <details><summary><span class="faq__sign">+</span>מה אם הילד עדיין לא יודע לקרוא?</summary>
+        <p>זה בסדר גמור. הפעילויות לא מבוססות על היכולת של הילד לקרוא הוראות. העולם של סול בנוי בצורה חזותית, משחקית ושמיעתית, כך שגם ילדים שעדיין לא קוראים יכולים ליהנות ולהשתתף.</p>
+      </details>
+
+      <details><summary><span class="faq__sign">+</span>הילד שלי מתקשה להתרכז. זה מתאים גם לו?</summary>
+        <p>הפעילויות במשפחה של סול לא בנויות כמו שיעור ארוך שבו צריך לשבת ולהקשיב. הילדים פוגשים משחקים, דמויות, מוסיקה ומשימות שונות, ויכולים להתקדם בקצב שמתאים להם.</p>
+      </details>
+
+      <details><summary><span class="faq__sign">+</span>מה קורה אם הילד מאבד עניין אחרי כמה שיעורים?</summary>
+        <p>לא חייבים להפוך את המשפחה של סול לעוד משימה שצריך "לסיים". אפשר לעצור, לחזור למשחק או לפעילות שאהב, לבחור משהו אחר ולחזור בהמשך. המטרה היא לשמור על הסקרנות, ההנאה והרצון להמשיך לגלות.</p>
+      </details>
+
+      <details><summary><span class="faq__sign">+</span>האם יש במשפחה של סול רק שיעורים?</summary>
+        <p>ממש לא. לצד השיעורים מחכים לילדים משחקים אינטראקטיביים, שירים, פעילויות נגינה, קצב ויצירה, משימות עם הדמויות ועוד הפתעות מעולמה של המשפחה של סול.</p>
+      </details>
+
+      <details><summary><span class="faq__sign">+</span>האם ההורים צריכים לשבת ליד הילד?</summary>
+        <p>לא. המשפחה של סול נבנתה כך שהילדים יוכלו להתמצא ולהתקדם בה באופן עצמאי ככל האפשר.</p>
+        <p>במקומות שבהם צריך הסבר מחכים להם הסברים מוקלטים וסרטוני הדרכה בכפתור ייעודי, כך שהם יכולים להבין מה עושים ולהמשיך בעצמם.</p>
+        <p>כמובן שאפשר להצטרף וליהנות יחד כשמתחשק - אבל אין צורך לשבת ליד הילד כדי להפעיל עבורו את החוויה.</p>
+      </details>
+
+      <details><summary><span class="faq__sign">+</span>האם המשפחה של סול מחליפה מורה לפסנתר?</summary>
+        <p>לא. המשפחה של סול לא נועדה להיות תחליף לשיעורי פסנתר. היא פותחת לילדים דלת לעולם המוסיקה בדרך משחקית ומהנה ומאפשרת להם להכיר תווים, קצב, יצירה ונגינה בדרך שמתאימה להם.</p>
+      </details>
+
+      <details><summary><span class="faq__sign">+</span>לכמה זמן מקבלים גישה למשפחה של סול?</summary>
+        <p>הגישה למשפחה של סול היא ללא הגבלת זמן.</p>
+        <p>אפשר לחזור לעולם של סול שוב ושוב, לחזור למשחקים ולפעילויות האהובות, לגלות דברים חדשים ולהתקדם בקצב שמתאים לילד - בלי לחץ להספיק ובלי תאריך תפוגה.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== סיום ===================== -->
+<section class="close">
+  <div class="wrap">
+    <h2>מוכנים לפתוח לילד שלכם את הדלת לעולם של סול?</h2>
+    <p>משחקים, שירים, דמויות, יצירה ונגינה - עולם מוסיקלי שלם שהוא יכול לגלות בקצב שלו.</p>
+    <a class="btn btn--lg" href="https://lp.smoove.io/i3m9" target="_blank" rel="noopener">מצטרפים למשפחה של סול</a>
+    <p class="close__terms">לגילאי 4–8 · לא צריך פסנתר בבית · גישה ללא הגבלת זמן</p>
+  </div>
+</section>
+
+<footer class="foot">© כל הזכויות שמורות סול | חני בר · <a href="privacy.pdf" target="_blank" rel="noopener">מדיניות פרטיות</a></footer>
+
+<script>
+/* הדמויות מתנגנות רק כשנוגעים בהן, ובלי קול.
+   ילד לא צריך שבע הנפשות רצות במקביל, והורה שגולל בטלפון
+   לא צריך שבעה סרטונים שנטענים בבת אחת. */
+document.querySelectorAll('.note').forEach(function (btn) {
+  var v = btn.querySelector('video');
+  if (!v) return;
+  var play  = function () { v.play().catch(function () {}); };
+  var pause = function () { v.pause(); v.currentTime = 0; };
+  btn.addEventListener('mouseenter', play);
+  btn.addEventListener('mouseleave', pause);
+  btn.addEventListener('focus', play);
+  btn.addEventListener('blur', pause);
+  btn.addEventListener('click', function () { v.paused ? play() : pause(); });
+});
+</script>
+
+<script>
+/* השער להצטרפות.
+
+   ביטול פעולת הלחיצה לבדו לא הספיק: סביבות שמטפלות בקישורים בעצמן פותחות
+   אותם עוד לפני שהדף מספיק לעצור. לכן כל עוד ההסכמה לא סומנה, הכתובת
+   פשוט לא נמצאת בכפתור — קישור בלי כתובת אינו קישור, ואין מה לפתוח.
+   היא מוחזרת ברגע הסימון ונשמטת שוב אם מבטלים אותו.
+
+   השער חל על כפתורי הרכישה בלבד. כפתור המתנה מוביל לדף אחר, שאוסף את
+   ההסכמה בעצמו, ואין סיבה לתלות אותו בתיבה שיושבת הרבה מתחתיו.
+
+   תיבה אחת לכל הדף: הורה שכבר אישר לא מתבקש שוב, ולחיצה ללא סימון
+   מביאה אותו אליה ומדגישה אותה כדי ששום דבר לא ייכשל בשקט. */
+(function () {
+  var box = document.getElementById("consent");
+  var label = document.querySelector(".consent");
+  if (!box || !label) return;
+
+  var buttons = [].slice.call(document.querySelectorAll("a.btn[href*=\"lp.smoove.io/i3m9\"]"));
+
+  function lock() {
+    buttons.forEach(function (btn) {
+      if (btn.hasAttribute("href")) {
+        btn.setAttribute("data-href", btn.getAttribute("href"));
+        btn.removeAttribute("href");
+      }
+      btn.setAttribute("aria-disabled", "true");
+    });
+  }
+
+  function unlock() {
+    buttons.forEach(function (btn) {
+      if (btn.hasAttribute("data-href")) btn.setAttribute("href", btn.getAttribute("data-href"));
+      btn.removeAttribute("aria-disabled");
+    });
+  }
+
+  function nudge() {
+    label.scrollIntoView({ block: "center", behavior: "smooth" });
+    label.classList.remove("is-missing");
+    void label.offsetWidth;
+    label.classList.add("is-missing");
+    box.focus({ preventScroll: true });
+  }
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      if (box.checked) return;
+      e.preventDefault();
+      nudge();
+    });
+  });
+
+  box.addEventListener("change", function () {
+    if (box.checked) { unlock(); label.classList.remove("is-missing"); }
+    else lock();
+  });
+
+  if (!box.checked) lock();
+})();
+</script>
+</body>
+</html>
