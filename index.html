@@ -463,7 +463,19 @@ html { scroll-behavior: smooth; }
     flex-wrap: wrap;
     justify-content: center;
   }
-  .scale-row .note { flex: 0 0 calc(25% - .75rem); }
+  .scale-row /* הדמויות נכנסות אחת אחרי השנייה, לפי סדר הסולם — דו ראשון וסי אחרון.
+   ההשהיה נקבעת לכל דמות בנפרד מתוך הקוד, ולכן הסדר נשמר גם כשהשורה
+   נשברת לשתיים בנייד. מי שביקש פחות תנועה רואה את כולן מיד. */
+.note {
+  opacity: 0;
+  transform: translateY(10px) scale(.96);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.scale-row.is-in .note { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .note { opacity: 1; transform: none; transition: none; }
+}
+.note { flex: 0 0 calc(25% - .75rem); }
 }
 .note {
   display: flex;
@@ -1388,6 +1400,10 @@ details p { padding: 0 1.35rem 1.3rem; color: var(--ink-soft); }
   var notes = [].slice.call(document.querySelectorAll('.note'));
   if (!notes.length) return;
 
+  /* כניסה מדורגת: כל דמות מקבלת את ההשהיה שלה לפי מקומה בסולם */
+  var row = notes[0].parentNode;
+  notes.forEach(function (n, i) { n.style.transitionDelay = (i * 140) + "ms"; });
+
   var quiet = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var timer = null;
   var at = 0;
@@ -1425,9 +1441,12 @@ details p { padding: 0 1.35rem 1.3rem; color: var(--ink-soft); }
   /* רק כשהשורה נראית */
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { e.isIntersecting ? start() : stop(); });
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { row.classList.add("is-in"); start(); } else { stop(); }
+      });
     }, { threshold: 0.25 }).observe(notes[0].parentNode);
   } else {
+    row.classList.add("is-in");
     start();
   }
 
