@@ -1033,16 +1033,16 @@ details p { padding: 0 1.35rem 1.3rem; color: var(--ink-soft); }
   <div class="wrap">
     <div class="scale-band__head">
       <h2>מי אמר שתווים צריכים להיות סימנים על הדף?</h2>
-      <p>אצלנו יש להם שמות, פנים, אופי וסיפור.<br>הכירו את המשפחה של סול - שבע דמויות שהופכות את הצלילים לחברים שילדים זוכרים.<br><br>לחצו על דמות ובואו להכיר 🎵</p>
+      <p>אצלנו יש להם שמות, פנים, אופי וסיפור.<br>הכירו את המשפחה של סול - שבע דמויות שהופכות את הצלילים לחברים שילדים זוכרים.</p>
     </div>
     <div class="scale-row">
-      <button class="note" style="--c: var(--do)"  aria-label="הדמות של דו"><span class="note__disc"><video src="assets/n6.mp4" poster="assets/p6.jpg" muted loop playsinline preload="none"></video></span><span class="note__name">דוֹ</span></button>
-      <button class="note" style="--c: var(--re)"  aria-label="הדמות של רה"><span class="note__disc"><video src="assets/n2.mp4" poster="assets/p2.jpg" muted loop playsinline preload="none"></video></span><span class="note__name">רֶה</span></button>
-      <button class="note" style="--c: var(--mi)"  aria-label="הדמות של מי"><span class="note__disc"><video src="assets/n3.mp4" poster="assets/p3.jpg" muted loop playsinline preload="none"></video></span><span class="note__name">מִי</span></button>
-      <button class="note" style="--c: var(--fa)"  aria-label="הדמות של פה"><span class="note__disc"><video src="assets/n4.mp4" poster="assets/p4.jpg" muted loop playsinline preload="none"></video></span><span class="note__name">פָה</span></button>
-      <button class="note" style="--c: var(--sol)" aria-label="הדמות של סול"><span class="note__disc"><video src="assets/n5.mp4" poster="assets/p5.jpg" muted loop playsinline preload="none"></video></span><span class="note__name">סוֹל</span></button>
-      <button class="note" style="--c: var(--la)"  aria-label="הדמות של לה"><span class="note__disc"><video src="assets/n1.mp4" poster="assets/p1.jpg" muted loop playsinline preload="none"></video></span><span class="note__name">לָה</span></button>
-      <button class="note" style="--c: var(--si)"  aria-label="הדמות של סי"><span class="note__disc"><video src="assets/n7.mp4" poster="assets/p7.jpg" muted loop playsinline preload="none"></video></span><span class="note__name">סִי</span></button>
+      <button class="note" style="--c: var(--do)"  aria-label="הדמות של דו"><span class="note__disc"><video src="assets/n6.mp4" poster="assets/p6.jpg" muted loop playsinline preload="metadata"></video></span><span class="note__name">דוֹ</span></button>
+      <button class="note" style="--c: var(--re)"  aria-label="הדמות של רה"><span class="note__disc"><video src="assets/n2.mp4" poster="assets/p2.jpg" muted loop playsinline preload="metadata"></video></span><span class="note__name">רֶה</span></button>
+      <button class="note" style="--c: var(--mi)"  aria-label="הדמות של מי"><span class="note__disc"><video src="assets/n3.mp4" poster="assets/p3.jpg" muted loop playsinline preload="metadata"></video></span><span class="note__name">מִי</span></button>
+      <button class="note" style="--c: var(--fa)"  aria-label="הדמות של פה"><span class="note__disc"><video src="assets/n4.mp4" poster="assets/p4.jpg" muted loop playsinline preload="metadata"></video></span><span class="note__name">פָה</span></button>
+      <button class="note" style="--c: var(--sol)" aria-label="הדמות של סול"><span class="note__disc"><video src="assets/n5.mp4" poster="assets/p5.jpg" muted loop playsinline preload="metadata"></video></span><span class="note__name">סוֹל</span></button>
+      <button class="note" style="--c: var(--la)"  aria-label="הדמות של לה"><span class="note__disc"><video src="assets/n1.mp4" poster="assets/p1.jpg" muted loop playsinline preload="metadata"></video></span><span class="note__name">לָה</span></button>
+      <button class="note" style="--c: var(--si)"  aria-label="הדמות של סי"><span class="note__disc"><video src="assets/n7.mp4" poster="assets/p7.jpg" muted loop playsinline preload="metadata"></video></span><span class="note__name">סִי</span></button>
     </div>
   </div>
 </section>
@@ -1376,20 +1376,80 @@ details p { padding: 0 1.35rem 1.3rem; color: var(--ink-soft); }
 <footer class="foot">© כל הזכויות שמורות סול | חני בר · <a href="privacy.pdf" target="_blank" rel="noopener">מדיניות פרטיות</a></footer>
 
 <script>
-/* הדמויות מתנגנות רק כשנוגעים בהן, ובלי קול.
-   ילד לא צריך שבע הנפשות רצות במקביל, והורה שגולל בטלפון
-   לא צריך שבעה סרטונים שנטענים בבת אחת. */
-document.querySelectorAll('.note').forEach(function (btn) {
-  var v = btn.querySelector('video');
-  if (!v) return;
-  var play  = function () { v.play().catch(function () {}); };
-  var pause = function () { v.pause(); v.currentTime = 0; };
-  btn.addEventListener('mouseenter', play);
-  btn.addEventListener('mouseleave', pause);
-  btn.addEventListener('focus', play);
-  btn.addEventListener('blur', pause);
-  btn.addEventListener('click', function () { v.paused ? play() : pause(); });
-});
+/* הדמויות מתעוררות אחת אחרי השנייה, לפי סדר הסולם.
+   שבע הנפשות בו-זמנית הן רעש - העין לא יודעת לאן להסתכל. אחת בכל רגע,
+   מדו עד סי, מראה שהשורה חיה, מוליכה את המבט בסדר הנכון, ומלמדת את
+   הסולם בלי מילה אחת.
+
+   הגל רץ רק כשהשורה על המסך, כדי לא לצרוך סוללה ורשת לחינם, ונעצר
+   לגמרי אם המבקר ביקש פחות תנועה. מגע גובר על הגל: ילד שנוגע בדמות
+   מקבל אותה מיד. */
+(function () {
+  var notes = [].slice.call(document.querySelectorAll('.note'));
+  if (!notes.length) return;
+
+  var quiet = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var timer = null;
+  var at = 0;
+  var held = null;
+
+  function videoOf(el) { return el.querySelector('video'); }
+
+  function stopAll() {
+    notes.forEach(function (n) {
+      var v = videoOf(n);
+      if (v && v !== held) { v.pause(); v.currentTime = 0; }
+    });
+  }
+
+  function step() {
+    if (held) return;
+    stopAll();
+    var v = videoOf(notes[at]);
+    at = (at + 1) % notes.length;
+    if (v) v.play().catch(function () {});
+  }
+
+  function start() {
+    if (quiet || timer) return;
+    step();
+    timer = window.setInterval(step, 2200);
+  }
+
+  function stop() {
+    window.clearInterval(timer);
+    timer = null;
+    stopAll();
+  }
+
+  /* רק כשהשורה נראית */
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { e.isIntersecting ? start() : stop(); });
+    }, { threshold: 0.25 }).observe(notes[0].parentNode);
+  } else {
+    start();
+  }
+
+  /* מגע גובר על הגל */
+  notes.forEach(function (btn) {
+    var v = videoOf(btn);
+    if (!v) return;
+    function take() {
+      held = v;
+      stopAll();
+      v.play().catch(function () {});
+    }
+    function release() {
+      if (held === v) { held = null; v.pause(); v.currentTime = 0; }
+    }
+    btn.addEventListener('mouseenter', take);
+    btn.addEventListener('mouseleave', release);
+    btn.addEventListener('focus', take);
+    btn.addEventListener('blur', release);
+    btn.addEventListener('click', function () { held === v ? release() : take(); });
+  });
+})();
 </script>
 
 <script>
