@@ -1516,5 +1516,48 @@ details p { padding: 0 1.35rem 1.3rem; color: var(--ink-soft); }
   if (!box.checked) lock();
 })();
 </script>
+
+<script>
+/* sol-track: מדידת לחיצות על שני סוגי הכפתורים.
+   ההרשמה עצמה מתבצעת בסמוב, ולכן כאן נמדד מי יצא לדרך ולא מי סיים. כל כפתור
+   מקבל שם לפי מקומו בדף, כדי שהדוח ייקרא כמפה של הדף ולא כחמש שורות זהות.
+
+   האירוע נשלח עם beacon, כדי שהוא לא ייעלם כשהדפדפן עובר לדף התשלום. */
+(function () {
+  if (typeof window.gtag !== 'function') return;
+
+  var WHERE = [
+    ['.top',          'רצועה עליונה'],
+    ['.hero',         'פתיחה'],
+    ['.gift',         'מתנה'],
+    ['.bonus',        'בונוס'],
+    ['.price',        'מחיר'],
+    ['.close',        'סיום']
+  ];
+
+  function place(el) {
+    for (var i = 0; i < WHERE.length; i++) {
+      if (el.closest(WHERE[i][0])) return WHERE[i][1];
+    }
+    return 'אחר';
+  }
+
+  document.querySelectorAll('a.btn').forEach(function (btn) {
+    var target = btn.getAttribute('href') || btn.getAttribute('data-href') || '';
+    var gift = target.indexOf('/iido') >= 0;
+    var join = target.indexOf('/i3m9') >= 0;
+    if (!gift && !join) return;
+
+    btn.addEventListener('click', function () {
+      /* כפתורי הרכישה נעולים עד סימון ההסכמה - לחיצה חסומה אינה יציאה */
+      if (join && !btn.hasAttribute('href')) return;
+      gtag('event', gift ? 'gift_click' : 'join_click', {
+        מיקום: place(btn),
+        transport_type: 'beacon'
+      });
+    });
+  });
+})();
+</script>
 </body>
 </html>
