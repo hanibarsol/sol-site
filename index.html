@@ -1388,85 +1388,59 @@ details p { padding: 0 1.35rem 1.3rem; color: var(--ink-soft); }
 <footer class="foot">© כל הזכויות שמורות סול | חני בר · <a href="privacy.pdf" target="_blank" rel="noopener">מדיניות פרטיות</a></footer>
 
 <script>
-/* הדמויות מתעוררות אחת אחרי השנייה, לפי סדר הסולם.
-   שבע הנפשות בו-זמנית הן רעש - העין לא יודעת לאן להסתכל. אחת בכל רגע,
-   מדו עד סי, מראה שהשורה חיה, מוליכה את המבט בסדר הנכון, ומלמדת את
-   הסולם בלי מילה אחת.
+/* שני קצבים לשורה: הדמויות נכנסות אחת אחרי השנייה לפי סדר הסולם, וכשהאחרונה
+   נחתה — כולן קמות לחיים יחד. הכניסה נושאת את הסדר, ההנפשה נושאת את החיים.
 
-   הגל רץ רק כשהשורה על המסך, כדי לא לצרוך סוללה ורשת לחינם, ונעצר
-   לגמרי אם המבקר ביקש פחות תנועה. מגע גובר על הגל: ילד שנוגע בדמות
-   מקבל אותה מיד. */
+   הכל רץ רק כשהשורה על המסך, כדי לא לצרוך סוללה ורשת של הורה שכבר גלל
+   הלאה, ונעצר לגמרי אם המבקר ביקש פחות תנועה. */
 (function () {
   var notes = [].slice.call(document.querySelectorAll('.note'));
   if (!notes.length) return;
 
-  /* כניסה מדורגת: כל דמות מקבלת את ההשהיה שלה לפי מקומה בסולם */
   var row = notes[0].parentNode;
-  notes.forEach(function (n, i) { n.style.transitionDelay = (i * 140) + "ms"; });
-
+  var STEP = 140;                                  /* ההפרש בין דמות לדמות */
+  var SETTLE = STEP * notes.length + 420;          /* מתי האחרונה סיימה לנחות */
   var quiet = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var timer = null;
-  var at = 0;
-  var held = null;
+  var wake = null;
 
-  function videoOf(el) { return el.querySelector('video'); }
+  notes.forEach(function (n, i) { n.style.transitionDelay = (i * STEP) + 'ms'; });
+
+  function videos() {
+    return notes.map(function (n) { return n.querySelector('video'); }).filter(Boolean);
+  }
+
+  function playAll() {
+    videos().forEach(function (v) { v.play().catch(function () {}); });
+  }
 
   function stopAll() {
-    notes.forEach(function (n) {
-      var v = videoOf(n);
-      if (v && v !== held) { v.pause(); v.currentTime = 0; }
-    });
+    window.clearTimeout(wake);
+    wake = null;
+    videos().forEach(function (v) { v.pause(); });
   }
 
-  function step() {
-    if (held) return;
-    stopAll();
-    var v = videoOf(notes[at]);
-    at = (at + 1) % notes.length;
-    if (v) v.play().catch(function () {});
+  function enter() {
+    row.classList.add('is-in');
+    if (quiet || wake) return;
+    wake = window.setTimeout(playAll, SETTLE);
   }
 
-  function start() {
-    if (quiet || timer) return;
-    step();
-    timer = window.setInterval(step, 2200);
-  }
-
-  function stop() {
-    window.clearInterval(timer);
-    timer = null;
-    stopAll();
-  }
-
-  /* רק כשהשורה נראית */
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { row.classList.add("is-in"); start(); } else { stop(); }
-      });
-    }, { threshold: 0.25 }).observe(notes[0].parentNode);
+      entries.forEach(function (e) { e.isIntersecting ? enter() : stopAll(); });
+    }, { threshold: 0.25 }).observe(row);
   } else {
-    row.classList.add("is-in");
-    start();
+    enter();
   }
 
-  /* מגע גובר על הגל */
+  /* נגיעה מחזירה דמות להתחלה, למי שרוצה לראות אותה שוב מקרוב */
   notes.forEach(function (btn) {
-    var v = videoOf(btn);
+    var v = btn.querySelector('video');
     if (!v) return;
-    function take() {
-      held = v;
-      stopAll();
+    btn.addEventListener('click', function () {
+      v.currentTime = 0;
       v.play().catch(function () {});
-    }
-    function release() {
-      if (held === v) { held = null; v.pause(); v.currentTime = 0; }
-    }
-    btn.addEventListener('mouseenter', take);
-    btn.addEventListener('mouseleave', release);
-    btn.addEventListener('focus', take);
-    btn.addEventListener('blur', release);
-    btn.addEventListener('click', function () { held === v ? release() : take(); });
+    });
   });
 })();
 </script>
