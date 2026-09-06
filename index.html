@@ -365,16 +365,21 @@ html { scroll-behavior: smooth; }
   align-items: center;
 }
 @media (min-width: 54rem) { .gift__in { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+/* צהוב מלא על טורקיז. הוא היה לבן חצי-שקוף ונבלע ברקע, וזו המילה שעוצרת
+   הורה שגולל. הצהוב אינו צבע חדש - הוא כבר נושא את כרטיס הבונוס בדף,
+   ולכן הוא חוזר על שפה קיימת ולא מוסיף אחת. */
 .gift__tag {
   display: inline-block;
   font-family: "Heebo", sans-serif;
   font-weight: 900;
-  font-size: .75rem;
+  font-size: .8125rem;
   letter-spacing: .12em;
-  background: rgba(255, 255, 255, .18);
-  padding: .3rem .85rem;
+  background: var(--amber);
+  color: #402A00;
+  padding: .34rem 1rem;
   border-radius: 999px;
   margin-bottom: .75rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .18);
 }
 .gift h2 { font-size: clamp(1.45rem, 3.4vw, 2rem); }
 .gift p { margin-top: .7rem; opacity: .93; max-width: 34rem; }
