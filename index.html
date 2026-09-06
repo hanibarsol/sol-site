@@ -149,7 +149,10 @@ h1, h2, h3, .display {
 }
 
 p { margin: 0; }
-img, video { max-width: 100%; display: block; }
+/* height:auto חיוני מרגע שלתמונות יש מידות מפורשות: בלעדיו הדפדפן מציית
+   לגובה שנרשם ומותח את התמונה. כללים מאוחרים יותר, שקובעים גובה בכוונה
+   ומשתמשים ב-object-fit, גוברים על זה כרגיל. */
+img, video { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
 
 .wrap { width: min(100% - 2.5rem, var(--wrap)); margin-inline: auto; }
